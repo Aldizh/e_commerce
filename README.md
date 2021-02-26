@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# e-commerce app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application is built using client side javascript (React) and commerce js.
 
 ## Available Scripts
-
-In the project directory, you can run:
 
 ### `yarn start`
 
@@ -29,6 +27,8 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+Uses [react-snapshot](https://www.npmjs.com/package/react-snapshot) to prerender static html
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -39,35 +39,43 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Libraries and Tools
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Create React App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Learn more on [Create React App](https://facebook.github.io/create-react-app/docs/getting-started).
 
 ### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Learn more on [Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
 ### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Learn more on [bundle size analysis](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
 ### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Learn more on [progressive web apps](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
 ### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Learn more on [advanced configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
-- This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Learn more on [deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
+- Heroku deployment using [Create React App BuildPack](https://github.com/mars/create-react-app-buildpack).
 
-- Heroku deployment using [Create React App BuildPack](https://github.com/mars/create-react-app-buildpack)
+- To add this buildpack to existing app
 
-### `yarn build` fails to minify
+  - ``` heroku buildpacks:set mars/create-react-app ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- To remove a buildpack from existing app
+
+  - ``` heroku buildpacks:remove mars/create-react-app  ```
+
+- To configure environment variables on heroku
+  - ``` heroku config:set GITHUB_USERNAME=joesmith ```
+
+- **Note: make sure you do not push `.env` file to github**
