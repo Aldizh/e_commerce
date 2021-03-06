@@ -1,8 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import { commerce } from './lib/commerce'
-import { CssBaseline } from '@material-ui/core'
+import { CssBaseline, Typography } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Products, Navbar, Cart, Checkout } from './components'
+
+const Copyright = () => {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <a target="_blank" href="https://react-commerce-js.herokuapp.com/">
+        Commerce Shop&nbsp;
+      </a>
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  )
+}
+
+const Footer = () => (
+  <footer style={{ padding: '10px', backgroundColor: '#f2f2f2' }}>
+    <Typography variant="h6" align="center" gutterBottom>
+      Thank you for visiting
+    </Typography>
+    <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+      These are just a few items i am selling.
+    </Typography>
+    <Copyright />
+  </footer>
+)
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -71,7 +96,7 @@ const App = () => {
 
   return (
     <Router>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
@@ -88,6 +113,7 @@ const App = () => {
               onUpdateCartQty={handleUpdateCartQty}
               onRemoveFromCart={handleRemoveFromCart}
               onEmptyCart={handleEmptyCart}
+              Footer={Footer}
             />
           </Route>
           <Route exact path="/checkout">
@@ -96,9 +122,11 @@ const App = () => {
               order={order}
               onCaptureCheckout={handleCaptureCheckout}
               error={errorMessage}
+              Footer={Footer}
             />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   )

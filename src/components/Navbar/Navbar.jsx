@@ -36,7 +36,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-            <img src={logo} alt="zhupani" height="25px" className={classes.image} /> Market Zhupani
+            <img src={logo} alt="store" height="25px" className={classes.image} /> My Store
           </Typography>
           <div className={classes.grow} />
           {isHome && (
