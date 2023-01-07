@@ -23,8 +23,7 @@ const Footer = () => (
       Thank you for visiting
     </Typography>
     <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-      These are just a few items i am selling.
-    </Typography>
+      * Sample items for sale. This is just a mock store.    </Typography>
     <Copyright />
   </footer>
 )
