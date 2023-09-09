@@ -1,6 +1,6 @@
 # e-commerce app
 
-This application is built using client side javascript (React) and commerce js.
+A simple e-commerce application built using client side Javascript (React) and Commerce JS. It uses stripe during the user checkout process.
 
 ## Available Scripts
 
@@ -77,5 +77,8 @@ Learn more on [advanced configuration](https://facebook.github.io/create-react-a
 
 - To configure environment variables on heroku
   - ``` heroku config:set GITHUB_USERNAME=joesmith ```
+
+- To deploy your code to the main branch
+  - ``` git push heroku main ```
 
 - **Note: make sure you do not push `.env` file to github**
