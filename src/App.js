@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { commerce } from './lib/commerce'
 import { CssBaseline, Typography } from '@material-ui/core'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import { commerce } from './lib/commerce'
 import { Products, Navbar, Cart, Checkout } from './components'
 
 const Copyright = () => {
