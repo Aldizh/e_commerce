@@ -27,8 +27,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Uses [react-snapshot](https://www.npmjs.com/package/react-snapshot) to prerender static html
-
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -61,24 +59,10 @@ Learn more on [progressive web apps](https://facebook.github.io/create-react-app
 
 Learn more on [advanced configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Deployment
 
-- Learn more on [deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- We are using github pages to deploy this application. Simply run
 
-- Heroku deployment using [Create React App BuildPack](https://github.com/mars/create-react-app-buildpack).
-
-- To add this buildpack to existing app
-
-  - ``` heroku buildpacks:set mars/create-react-app ```
-
-- To remove a buildpack from existing app
-
-  - ``` heroku buildpacks:remove mars/create-react-app  ```
-
-- To configure environment variables on heroku
-  - ``` heroku config:set GITHUB_USERNAME=joesmith ```
-
-- To deploy your code to the main branch
-  - ``` git push heroku main ```
+### `yarn deploy`
 
 - **Note: make sure you do not push `.env` file to github**

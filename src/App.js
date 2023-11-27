@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CssBaseline, Typography } from '@material-ui/core'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { commerce } from './lib/commerce'
 import { Products, Navbar, Cart, Checkout } from './components'
@@ -42,32 +42,32 @@ const App = () => {
   }
 
   const fetchCart = async () => {
-    const cart = await commerce.cart.retrieve()
-    setCart(cart)
+    const newCart = await commerce.cart.retrieve()
+    setCart(newCart)
   }
 
-  const handleAddToCart = async (productId, quantity) => {
-    const { cart } = await commerce.cart.add(productId, quantity);
+  const handleAddToCart = async (lineItemId, quantity) => {
+    const newCart = await commerce.cart.add(lineItemId, quantity);
 
-    setCart(cart);
+    setCart(newCart);
   }
 
-  const handleUpdateCartQty = async (productId, quantity) => {
-    const { cart } = await commerce.cart.update(productId, { quantity });
+  const handleUpdateCartQty = async (lineItemId, quantity) => {
+    const newCart = await commerce.cart.update(lineItemId, { quantity });
 
-    setCart(cart);
+    setCart(newCart);
   }
 
-  const handleRemoveFromCart = async (productId) => {
-    const { cart } = await commerce.cart.remove(productId);
+  const handleRemoveFromCart = async (lineItemId) => {
+    const newCart = await commerce.cart.remove(lineItemId);
 
-    setCart(cart);
+    setCart(newCart);
   }
 
   const handleEmptyCart = async () => {
-    const { cart } = await commerce.cart.empty();
+    const newCart = await commerce.cart.empty();
 
-    setCart(cart);
+    setCart(newCart);
   }
 
 
@@ -95,40 +95,48 @@ const App = () => {
   }, [])
 
   return (
-    <Router>
+    <BrowserRouter basename="/e_commerce" >
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Switch>
-          <Route exact path="/">
-            <Products
-              products={products}
-              onAddToCart={handleAddToCart}
-            />
-          </Route>
-          <Route exact path="/cart">
-            <Cart
-              cart={cart}
-              setCart={setCart}
-              onUpdateCartQty={handleUpdateCartQty}
-              onRemoveFromCart={handleRemoveFromCart}
-              onEmptyCart={handleEmptyCart}
-              Footer={Footer}
-            />
-          </Route>
-          <Route exact path="/checkout">
-            <Checkout
-              cart={cart}
-              order={order}
-              onCaptureCheckout={handleCaptureCheckout}
-              error={errorMessage}
-              Footer={Footer}
-            />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Products
+                products={products}
+                onAddToCart={handleAddToCart}
+              />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                cart={cart}
+                onUpdateCartQty={handleUpdateCartQty}
+                onRemoveFromCart={handleRemoveFromCart}
+                onEmptyCart={handleEmptyCart}
+                Footer={Footer}
+              />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                cart={cart}
+                order={order}
+                onCaptureCheckout={handleCaptureCheckout}
+                error={errorMessage}
+                Footer={Footer}
+              />
+            }
+          />
+        </Routes>
         <Footer />
       </div>
-    </Router>
+    </BrowserRouter>
   )
 }
 

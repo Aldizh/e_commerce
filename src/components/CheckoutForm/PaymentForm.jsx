@@ -5,9 +5,9 @@ import { loadStripe } from '@stripe/stripe-js'
 
 import Review from './Review'
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
@@ -21,7 +21,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       console.log('[error]', error);
     } else {
       const orderData = {
-        line_items: checkoutToken.live.line_items,
+        line_items: checkoutToken.line_items,
         customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
         shipping: { name: 'Primary', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
         fulfillment: { shipping_method: shippingData.shippingOption },
@@ -53,7 +53,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="outlined" onClick={backStep}>Back</Button>
                 <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                  Pay {checkoutToken.live.subtotal.formatted_with_symbol}
+                  Pay {checkoutToken.subtotal.formatted_with_symbol}
                 </Button>
               </div>
             </form>
