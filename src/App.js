@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CssBaseline, Typography } from '@material-ui/core'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { commerce } from './lib/commerce'
 import { Products, Navbar, Cart, Checkout } from './components'
@@ -99,14 +99,14 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Switch>
-          <Route exact path="/">
+        <Routes>
+          <Route path="/" element={
             <Products
               products={products}
               onAddToCart={handleAddToCart}
-            />
-          </Route>
-          <Route exact path="/cart">
+            />}
+          />
+          <Route path="/cart" element={
             <Cart
               cart={cart}
               setCart={setCart}
@@ -114,18 +114,18 @@ const App = () => {
               onRemoveFromCart={handleRemoveFromCart}
               onEmptyCart={handleEmptyCart}
               Footer={Footer}
-            />
-          </Route>
-          <Route exact path="/checkout">
+            />}
+          />
+          <Route path="/checkout" element={
             <Checkout
               cart={cart}
               order={order}
               onCaptureCheckout={handleCaptureCheckout}
               error={errorMessage}
               Footer={Footer}
-            />
-          </Route>
-        </Switch>
+            />}
+          />
+        </Routes>
         <Footer />
       </div>
     </Router>
