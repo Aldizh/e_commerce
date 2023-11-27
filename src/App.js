@@ -9,7 +9,7 @@ const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <a target="_blank" href="https://react-commerce-js.herokuapp.com/">
+      <a target="_blank" rel="noreferrer" href="https://aldizh.github.io/e_commerce">
         Commerce Shop&nbsp;
       </a>
       {new Date().getFullYear()}
