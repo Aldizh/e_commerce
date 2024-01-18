@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { commerce } from '../../../lib/commerce';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
+import Footer from '../../Footer';
 import useStyles from './styles';
 
 const steps = ['Shipping address', 'Payment details'];
@@ -87,6 +88,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
           {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
         </Paper>
       </main>
+      <Footer />
     </>
   );
 };

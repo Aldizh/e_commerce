@@ -6,6 +6,7 @@ export default makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   layout: {
+    flex: 1,
     marginTop: '5%',
     width: 'auto',
     marginLeft: theme.spacing(2),

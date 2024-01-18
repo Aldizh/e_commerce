@@ -1,33 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { CssBaseline, Typography } from '@material-ui/core'
+import { CssBaseline } from '@material-ui/core'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { commerce } from './lib/commerce'
 import { Products, Navbar, Cart, Checkout } from './components'
-
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <a target="_blank" rel="noreferrer" href="https://aldizh.github.io/e_commerce">
-        Commerce Shop&nbsp;
-      </a>
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
-const Footer = () => (
-  <footer style={{ padding: '10px', backgroundColor: '#f2f2f2' }}>
-    <Typography variant="h6" align="center" gutterBottom>
-      Thank you for visiting
-    </Typography>
-    <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-      * Sample items for sale. This is just a mock store.    </Typography>
-    <Copyright />
-  </footer>
-)
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -42,7 +18,9 @@ const App = () => {
   }
 
   const fetchCart = async () => {
-    const newCart = await commerce.cart.retrieve()
+    const newCart = await commerce.cart.retrieve().catch(err => {
+      console.log('error fetching cart...', err.message)
+    })
     setCart(newCart)
   }
 
@@ -96,7 +74,14 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/e_commerce" >
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          backgroundColor: "lightgray"
+        }}
+      >
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Routes>
@@ -117,7 +102,6 @@ const App = () => {
                 onUpdateCartQty={handleUpdateCartQty}
                 onRemoveFromCart={handleRemoveFromCart}
                 onEmptyCart={handleEmptyCart}
-                Footer={Footer}
               />
             }
           />
@@ -129,12 +113,10 @@ const App = () => {
                 order={order}
                 onCaptureCheckout={handleCaptureCheckout}
                 error={errorMessage}
-                Footer={Footer}
               />
             }
           />
         </Routes>
-        <Footer />
       </div>
     </BrowserRouter>
   )
